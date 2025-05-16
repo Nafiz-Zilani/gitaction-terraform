@@ -25,6 +25,8 @@ jobs:
 
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.8.3
 
       - name: Configure Terraform Credentials
         run: |
@@ -36,6 +38,9 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Write Terraform Variables
+        run: echo 'ssh_public_key = "${{ secrets.SSH_PUBLIC_KEY }}"' > terraform.auto.tfvars
 
       - name: Terraform Plan
         run: terraform plan
