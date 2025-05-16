@@ -26,7 +26,7 @@ jobs:
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Configure Terraform Credentials
+      - name: Configures Terraform Credentials
         run: |
           mkdir -p ~/.terraform.d
           echo '{"credentials":{"app.terraform.io":{"token":"${{ secrets.TF_CLOUD_TOKEN }}"}}}' > ~/.terraform.d/credentials.tfrc.json
